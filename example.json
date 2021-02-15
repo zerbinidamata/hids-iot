@@ -1,0 +1,10 @@
+{
+  "name": "Teste",
+  "action": "Rule test",
+  "premise": "Premisse test",
+  "periodicity": 3600,
+  "cpu_consumption": 20,
+  "output": "True",
+  "engine": "python",
+  "test_case": "teste"
+}
