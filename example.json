@@ -1,10 +1,9 @@
 {
   "name": "Teste",
-  "action": "Rule test",
-  "premise": "Premisse test",
-  "periodicity": 3600,
+  "action": "print(\"output=2\")",
+  "premise": "1",
+  "periodicity": "0 0 * * *",
   "cpu_consumption": 20,
-  "output": "True",
   "engine": "python",
-  "test_case": "teste"
+  "test_case":  "print(\"output=1\")"
 }

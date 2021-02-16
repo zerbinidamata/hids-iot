@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import sqlite3
 from datetime import datetime
 
@@ -24,7 +22,7 @@ def create_rules_table(conn):
             action TEXT NOT NULL,
             created_at DATE NOT NULL,
             engine TEXT NOT NULL,
-            periodicity INTEGER NOT NULL,
+            periodicity TEXT NOT NULL,
             cpu_consumption INTEGER NOT NULL
     );
     """
@@ -68,6 +66,7 @@ def insert_rule(rule):
     )
     conn.commit()
     conn.close()
+    return rule
 
 
 def update_rule(selector, rule):
