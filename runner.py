@@ -11,7 +11,7 @@ def create_cron_task(rule, id):
     f.close()
     cwd = os.getcwd()
     job = cron.new(
-        command=f"python {cwd}/cron_rules/{id}_test_case.py 2> ./cron_rules/logs/{id}_test_case.log"
+        command=f"python {cwd}/cron_rules/{id}_test_case.py >> {cwd}/cron_rules/logs/{id}_test_case.log"
     )
     job.setall(rule["periodicity"])
     cron.write()

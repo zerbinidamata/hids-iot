@@ -2,7 +2,7 @@
   "name": "Teste",
   "action": "print(\"output=2\")",
   "premise": "1",
-  "periodicity": "0 0 * * *",
+  "periodicity": "* * * * *",
   "cpu_consumption": 20,
   "engine": "python",
   "test_case":  "print(\"output=1\")"
