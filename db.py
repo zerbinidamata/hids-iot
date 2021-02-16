@@ -66,7 +66,7 @@ def insert_rule(rule):
     )
     conn.commit()
     conn.close()
-    return rule
+    return cursor.lastrowid
 
 
 def update_rule(selector, rule):

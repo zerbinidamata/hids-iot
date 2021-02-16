@@ -3,12 +3,15 @@ import json
 import argparse
 import runner
 
-
+# Insert rule in db and create CRON Task or execute rule based on peridocity
 def create_rule_from_file(file):
     with open(file) as json_file:
         rule = json.load(json_file)
-        db.insert_rule(rule)
-        runner.run_rule(rule)
+        rule_id = db.insert_rule(rule)
+        if rule["periodicity"] == "0":
+            runner.run_rule(rule)
+        else:
+            runner.create_cron_task(rule, rule_id)
 
 
 if __name__ == "__main__":
