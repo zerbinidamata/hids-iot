@@ -5,7 +5,7 @@ import os
 # Create cron task file and logs for test_cases
 # The file pattern is {id}_test_case
 def create_cron_task(rule, id):
-    cron = CronTab(user="zerbs")
+    cron = CronTab(user="root")
     f = open(f"./cron_rules/{id}_test_case.py", "w")
     f.write(rule["test_case"])
     f.close()
