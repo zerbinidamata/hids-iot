@@ -2,6 +2,10 @@ import db
 import json
 import argparse
 import runner
+import os
+import threading
+
+from watcher import LogsWatcher
 
 # Insert rule in db and create CRON Task or execute rule based on peridocity
 def create_rule_from_file(file):

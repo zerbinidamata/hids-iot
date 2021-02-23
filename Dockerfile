@@ -7,5 +7,6 @@ RUN apk add python3 py-pip
 RUN apk add --no-cache bash
 RUN pip3 install -r requirements.txt
 
+CMD ["/entry.sh"]
 
 

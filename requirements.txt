@@ -1,1 +1,2 @@
 python-crontab==2.5.1
+watchdog==2.0.0
