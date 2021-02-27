@@ -12,7 +12,7 @@ def create_rule_from_file(file):
         rule = json.load(json_file)
         rule_id = db.insert_rule(rule)
         if rule["periodicity"] == "0":
-            runner.check_test_case(rule)
+            runner.check_test_case(rule, rule_id)
         else:
             runner.create_cron_task(rule, rule_id)
 
