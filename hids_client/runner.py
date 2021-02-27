@@ -35,7 +35,7 @@ def check_cron_output(filePath):
     rule = db.get_rule_by_attr("id", rule_id)
     # Check if log output matches rule output 
     line = subprocess.check_output(['tail', '-1', filePath])
-    if(line == rule["output"])
+    if line == rule["output"]:
         run_rule(rule)
 
 # Execute rule actions

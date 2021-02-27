@@ -12,4 +12,4 @@ sudo make altinstall
 
 # Install pip3 
 sudo apt install python-pip3
-pip3 install -r requirements.txt
+pip3 install -r /home/hids_client/requirements.txt
