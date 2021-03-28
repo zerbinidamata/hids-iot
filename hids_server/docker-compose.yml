@@ -12,8 +12,8 @@ services:
       sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:3003"
     environment:
       - DB_HOST=db
-      - DB_NAME=tutorial-dev
-      - DB_USER=vinhle
+      - DB_NAME=hids
+      - DB_USER=user
       - DB_PASS=password
     depends_on:
       - db
@@ -21,13 +21,13 @@ services:
   db:
     image: postgres:13-alpine
     environment:
-      - POSTGRES_DB=tutorial-dev
-      - POSTGRES_USER=vinhle
+      - POSTGRES_DB=hids
+      - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
     ports:
       - "5432:5432"
     volumes:
-    - tutorial-volume:/var/lib/postgresql/data
+    - hids-volume:/var/lib/postgresql/data
 
 volumes:
-  tutorial-volume:
+  hids-volumes:
