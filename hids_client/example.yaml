@@ -1,0 +1,11 @@
+name: "Teste"
+
+test_case:
+  scripts: 
+    - check_sshd
+  periodicity: 0
+
+action: 
+  scripts:
+    - stop_sshd
+  periodicity: 0
