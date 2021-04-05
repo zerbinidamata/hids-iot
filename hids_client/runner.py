@@ -44,7 +44,13 @@ def check_cron_output(filePath):
 
 
 # Execute rule actions
-def run_rule(rule):
+def execute_rule(rule):
+    test_case_scripts_path = f"{cwd}/scripts/test_cases"
+    actions_scripts_path = f"{cwd}/scripts/actions"
+    length_actions = rule["actions"]["scripts"].length
+    length_test_cases = rule["actions"]["scripts"].length
+
+    cmd = ["bash", f"{cwd}/scripts/test_cases/actions/"]
     f = open("tmp.py", "w")
     f.write(rule["action"])
     f.close()
