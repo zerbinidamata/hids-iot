@@ -1,11 +1,12 @@
-name: "Teste"
+name: "SSH Rule"
+shared: true
+periodicity: 0
 
 test_case:
   scripts: 
-    - check_sshd
-  periodicity: 0
+    - check_sshd.sh
+    - check_ssh_port.sh
 
 action: 
   scripts:
-    - stop_sshd
-  periodicity: 0
+    - stop_sshd.sh
