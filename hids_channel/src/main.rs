@@ -3,11 +3,13 @@
 use dotenv;
 use std::env;
 mod api_author;
+mod transport;
 
 use crate::api_author::announce::start_a_new_channel;
 use crate::api_author::get_subscribers::get_subscriptions_and_share_keyload;
 use crate::api_author::send_masked_payload::send_masked_payload;
 use crate::api_author::send_message::send_signed_message;
+use crate::transport::gen_transport;
 
 use iota_streams::app_channels::api::tangle::Author;
 
@@ -55,7 +57,6 @@ fn main() {
     // Parse env vars with a fallback
     let node_url = env::var("URL").unwrap_or("http://localhost:14265".to_string());
     // Fails at unwrap when the url isnt working
-    // let client = Client::new_from_url(&node_url);
 
     let client = Client::new_from_url(&node_url);
 
@@ -63,7 +64,6 @@ fn main() {
     let mut send_opt = SendTrytesOptions::default();
     send_opt.min_weight_magnitude = 9;
     transport.set_send_options(send_opt);
-
     let encoding = "utf-8";
 
     // --------------- Author -------------------
@@ -98,7 +98,7 @@ fn main() {
     println!("Now, in a new terminal window, use the subscriber to publish a `Subscribe` message on the channel");
     println!("");
     println!(
-        "cargo +nightly run --release --bin subscriber {} {} {}",
+        "cargo run --release --bin subscriber {} {} {}",
         channel_address, announce_msgid, signed_message.msgid
     );
 

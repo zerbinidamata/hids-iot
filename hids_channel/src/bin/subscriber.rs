@@ -1,4 +1,4 @@
-// #![cfg_attr(debug_assertions, allow(dead_code, unused_imports))]
+#![cfg_attr(debug_assertions, allow(dead_code, unused_imports))]
 
 use iota_streams::app::transport::tangle::{
   client::{Client, SendTrytesOptions},
@@ -104,9 +104,6 @@ fn subscribe<T: Transport>(
 fn main() {
   // Change the default settings to use a lower minimum weight magnitude for the Devnet
   let mut send_opt = SendTrytesOptions::default();
-  // default is 14
-  send_opt.min_weight_magnitude = 9;
-  send_opt.local_pow = false;
 
   // Connect to an IOTA node
   let node_url = env::var("URL").unwrap_or("http://localhost:14265".to_string());
