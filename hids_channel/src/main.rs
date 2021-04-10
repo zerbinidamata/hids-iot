@@ -3,13 +3,11 @@
 use dotenv;
 use std::env;
 mod api_author;
-mod transport;
 
 use crate::api_author::announce::start_a_new_channel;
 use crate::api_author::get_subscribers::get_subscriptions_and_share_keyload;
 use crate::api_author::send_masked_payload::send_masked_payload;
 use crate::api_author::send_message::send_signed_message;
-use crate::transport::gen_transport;
 
 use iota_streams::app_channels::api::tangle::Author;
 
@@ -102,18 +100,9 @@ fn main() {
         channel_address, announce_msgid, signed_message.msgid
     );
 
-    println!(
-        "Tangle Address/channel: {:02X?}",
-        to_trytes(&author.channel_address().unwrap().to_string())
-    );
-    // println!(
-    //     "Tangle announce_message tag: {}",
-    //     to_trytes(&announce_message.msgid.to_string())
-    // );
-    // println!(
-    //     "Tangle signed_message tag: {}",
-    //     to_trytes(&signed_message.msgid.to_string())
-    // );
+    println!("Tangle Address/channel: {}", channel_address);
+    println!("Tangle announce_message tag: {}", announce_message);
+    println!("Tangle signed_message tag: {}", announce_msgid);
 
     let mut subscribe_message_identifier = String::new();
     println!("Enter the message identifier of the `Subscribe` message that was published by the subscriber:");
