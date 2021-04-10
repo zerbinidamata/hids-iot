@@ -8,6 +8,7 @@ use crate::api_author::announce::start_a_new_channel;
 use crate::api_author::get_subscribers::get_subscriptions_and_share_keyload;
 use crate::api_author::send_masked_payload::send_masked_payload;
 use crate::api_author::send_message::send_signed_message;
+
 use iota_streams::app_channels::api::tangle::Author;
 
 use iota_streams::{
@@ -25,6 +26,8 @@ use iota_streams::{
     },
 };
 
+use std::cell::RefCell;
+
 // use iota_streams::app::{
 //     transport::tangle::{
 //         PAYLOAD_BYTES,
@@ -35,20 +38,31 @@ use iota_streams::{
 //     }
 // };
 
+use iota_conversion::trytes_converter::{to_string, to_trytes};
+
 fn main() {
     // Load or .env file, log message if we failed
     if dotenv::dotenv().is_err() {
         println!(".env file not found; copy and rename example.env to \".env\"");
     };
 
+    // Change the default settings to use a lower minimum weight magnitude for the Devnet
+    let mut send_opt = SendTrytesOptions::default();
+    // default is 14
+    send_opt.min_weight_magnitude = 9;
+    send_opt.local_pow = false;
+
     // Parse env vars with a fallback
     let node_url = env::var("URL").unwrap_or("http://localhost:14265".to_string());
-    let node_mwm: u8 = env::var("MWM")
-        .map(|s| s.parse().unwrap_or(14))
-        .unwrap_or(14);
-
     // Fails at unwrap when the url isnt working
+    // let client = Client::new_from_url(&node_url);
+
     let client = Client::new_from_url(&node_url);
+
+    let mut transport = Rc::new(RefCell::new(client));
+    let mut send_opt = SendTrytesOptions::default();
+    send_opt.min_weight_magnitude = 9;
+    transport.set_send_options(send_opt);
 
     let encoding = "utf-8";
 
@@ -62,7 +76,7 @@ fn main() {
         encoding,
         PAYLOAD_BYTES,
         multi_branching_flag,
-        client,
+        transport.clone(),
     );
 
     let channel_address = author.channel_address().unwrap().to_string();
@@ -83,21 +97,22 @@ fn main() {
     println!("");
     println!("Now, in a new terminal window, use the subscriber to publish a `Subscribe` message on the channel");
     println!("");
-    // println!(
-    //     "cargo +nightly run --release --bin subscriber {} {} {}",
-    //     channel_address, announce_msgid, signed_message.msgid
-    // );
-    // println!(
-    //     "Tangle Address/channel: {}",
-    //     bytes_to_trytes(author.channel_address().unwrap().as_ref())
-    // );
+    println!(
+        "cargo +nightly run --release --bin subscriber {} {} {}",
+        channel_address, announce_msgid, signed_message.msgid
+    );
+
+    println!(
+        "Tangle Address/channel: {:02X?}",
+        to_trytes(&author.channel_address().unwrap().to_string())
+    );
     // println!(
     //     "Tangle announce_message tag: {}",
-    //     bytes_to_trytes(announce_message.msgid.as_ref())
+    //     to_trytes(&announce_message.msgid.to_string())
     // );
     // println!(
     //     "Tangle signed_message tag: {}",
-    //     bytes_to_trytes(signed_message.msgid.as_ref())
+    //     to_trytes(&signed_message.msgid.to_string())
     // );
 
     let mut subscribe_message_identifier = String::new();
