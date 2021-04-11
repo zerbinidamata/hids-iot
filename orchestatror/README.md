@@ -5,15 +5,18 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
+## System dependencies
+```
+docker-compose
+docker
+```
+# Configuration
+`docker-compose build`
+`docker-compose up`
 
 * Database initialization
+
+`docker-compose run orchestrator rake db:create db:seed db:migrate `
 
 * How to run the test suite
 
