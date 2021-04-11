@@ -1,0 +1,7 @@
+scripts: 
+  - check_sshd.sh
+  - stop_sshd.sh
+
+# Isso é para o caso de querermos filtrar o compartilhamente para redes/canais especificos
+sharing:
+  channels: all

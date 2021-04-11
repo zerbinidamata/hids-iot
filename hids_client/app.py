@@ -11,7 +11,7 @@ def create_rule_from_file(file):
     with open(file) as f:
         rule = yaml.safe_load(f)
         # TODO: redis vs sqlite(necessity of having DB in hids_client)
-        rule_id = db.insert_rule(rule)
+        # rule_id = db.insert_rule(rule)
         if rule["periodicity"] == 0:
             runner.execute_rule(rule)
         else:

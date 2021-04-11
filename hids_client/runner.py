@@ -1,8 +1,8 @@
 import subprocess
 from crontab import CronTab
 import os
+import yaml
 import db
-import report
 
 cwd = os.getcwd()
 
@@ -17,6 +17,16 @@ def get_rule_cmd(rule):
     return cmd
 
 
+def check_policy(rule):
+    with open("policy.yaml") as f:
+        policy = yaml.safe_load(f)
+        print(policy)
+        if set(rule["test_case"]["scripts"]).issubset(policy["scripts"]) and set(
+            rule["action"]["scripts"]
+        ).issubset(policy["scripts"]):
+            return True
+
+
 # Create cron task file and logs for test_cases
 # The file pattern is {id}_test_case
 def create_cron_task(rule):
@@ -29,6 +39,11 @@ def create_cron_task(rule):
 
 # Execute rule
 def execute_rule(rule):
-    cmd = get_rule_cmd(rule)
-    os.system(cmd)
-    print(cmd)
+    policy_compatible = check_policy(rule)
+    if policy_compatible:
+        cmd = get_rule_cmd(rule)
+        os.system(cmd)
+        print(cmd)
+    else:
+        # TODO: criar handler de orquestração da regra
+        print("Acionar orquestrador")
