@@ -15,10 +15,14 @@
   # Tasks: the list of tasks that will be executed within the playbook
   tasks:
     # This can be changed to a script command if the hids_client is fetched from a remote
+    # TODO: test the synchronize instead of copy later
     - name: Copy HIDS Client 
-      copy:
+      #copy 
+      synchronize:
         src: ./hids_client/
         dest: /home/hids_client
+        # rsync_opts:
+        #   - "--exclude=.git"
 
     - name: Install HIDS dependencies
       command: bash /home/hids_client/install.sh
