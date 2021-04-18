@@ -1,0 +1,11 @@
+/home/zerbs/hids-iot/iota_channel/target/rls/debug/deps/futures_core-30acd37a4128ffb1.rmeta: /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/lib.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/future.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/stream.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/mod.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/poll.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/__internal/mod.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/__internal/atomic_waker.rs
+
+/home/zerbs/hids-iot/iota_channel/target/rls/debug/deps/futures_core-30acd37a4128ffb1.d: /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/lib.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/future.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/stream.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/mod.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/poll.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/__internal/mod.rs /home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/__internal/atomic_waker.rs
+
+/home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/lib.rs:
+/home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/future.rs:
+/home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/stream.rs:
+/home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/mod.rs:
+/home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/poll.rs:
+/home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/__internal/mod.rs:
+/home/zerbs/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.14/src/task/__internal/atomic_waker.rs:
