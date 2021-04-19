@@ -1,0 +1,2 @@
+# config/elastic_apm.yml
+server_url: 'http://localhost:8200'
