@@ -1,2 +1,0 @@
-cargo:rustc-env=TYPENUM_BUILD_CONSTS=/home/zerbs/hids-iot/iota_channel/target/rls/debug/build/typenum-e51e1420244a529d/out/consts.rs
-cargo:rustc-env=TYPENUM_BUILD_OP=/home/zerbs/hids-iot/iota_channel/target/rls/debug/build/typenum-e51e1420244a529d/out/op.rs
