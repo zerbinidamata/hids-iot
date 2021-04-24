@@ -1,6 +1,6 @@
 class RulesController < ApplicationController
   def index
-    @rules = Rules.all
+    @rules = Rule.all
   end
 
   def create
