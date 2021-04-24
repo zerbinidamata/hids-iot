@@ -4,13 +4,15 @@ class Rule < ApplicationRecord
 
   def add_actions(rule, actions)
     actions.each do |action|
-      rule.actions << action
+      @action = Action.find(action)
+      rule.action << @action
     end
   end
 
   def add_test_cases(rule, test_cases)
     test_cases.each do |test_case|
-      rule.test_cases << test_case
+      @test_case = Action.find(test_case)
+      rule.test_case << @test_case
     end
   end
 end
