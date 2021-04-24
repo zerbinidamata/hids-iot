@@ -8,14 +8,20 @@ class RulesController < ApplicationController
 
   def show
     @rule = Rule.find(params[:id])
-    render json: { name: @rule.name, actions: @rule.action, test_cases: @rule.test_case }, status: :ok if @rule
+    if @rule
+      render json: {
+        rule: @rule,
+        action_name: @rule.action.action_name,
+        action_scripts: @rule.action.script,
+        test_case_name: @rule.test_case.test_case_name,
+        test_case_scripts: @rule.test_case.script
+      }, status: :ok
+    end
   end
 
   def create
     @rule = Rule.create(rules_params)
     if @rule.save
-      @rule.add_actions(@rule, params[:actions])
-      @rule.add_actions(@rule, params[:test_cases])
       render json: @rule, status: :ok
     else
       # Raise error and log to logstash
@@ -37,6 +43,6 @@ class RulesController < ApplicationController
   private
 
   def rules_params
-    params.permit(:name, :periodicity, :shared)
+    params.permit(:name, :periodicity, :shared, :actions_id, :test_cases_id)
   end
 end

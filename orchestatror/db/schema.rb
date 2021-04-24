@@ -10,22 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_24_172531) do
+ActiveRecord::Schema.define(version: 2021_04_24_234517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
-    t.string "name"
+    t.string "action_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "actions_rules", id: false, force: :cascade do |t|
-    t.bigint "rule_id", null: false
-    t.bigint "action_id", null: false
-    t.index ["action_id"], name: "index_actions_rules_on_action_id"
-    t.index ["rule_id"], name: "index_actions_rules_on_rule_id"
   end
 
   create_table "actions_scripts", id: false, force: :cascade do |t|
@@ -84,13 +77,10 @@ ActiveRecord::Schema.define(version: 2021_04_24_172531) do
     t.boolean "shared"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "rules_test_cases", id: false, force: :cascade do |t|
-    t.bigint "rule_id", null: false
-    t.bigint "test_case_id", null: false
-    t.index ["rule_id"], name: "index_rules_test_cases_on_rule_id"
-    t.index ["test_case_id"], name: "index_rules_test_cases_on_test_case_id"
+    t.bigint "action_id"
+    t.bigint "test_case_id"
+    t.index ["action_id"], name: "index_rules_on_action_id"
+    t.index ["test_case_id"], name: "index_rules_on_test_case_id"
   end
 
   create_table "scripts", force: :cascade do |t|
@@ -108,7 +98,7 @@ ActiveRecord::Schema.define(version: 2021_04_24_172531) do
   end
 
   create_table "test_cases", force: :cascade do |t|
-    t.string "name"
+    t.string "test_case_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

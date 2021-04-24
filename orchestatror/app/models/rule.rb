@@ -1,6 +1,6 @@
 class Rule < ApplicationRecord
-  has_and_belongs_to_many :action
-  has_and_belongs_to_many :test_case
+  belongs_to :action
+  belongs_to :test_case
 
   def add_actions(rule, actions)
     actions.each do |action|

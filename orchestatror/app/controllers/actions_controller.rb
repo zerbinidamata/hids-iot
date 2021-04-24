@@ -8,7 +8,10 @@ class ActionsController < ApplicationController
 
   def show
     @action = Action.find(params[:id])
-    render json: { name: @action.name, scripts: @action.script }, status: :ok if @action
+    if @action
+      render json: { action_name: @action.action_name, scripts: @action.script, rules: @action.rule },
+             status: :ok
+    end
   end
 
   def create
@@ -24,6 +27,6 @@ class ActionsController < ApplicationController
   private
 
   def action_params
-    params.permit(:name)
+    params.permit(:action_name)
   end
 end
