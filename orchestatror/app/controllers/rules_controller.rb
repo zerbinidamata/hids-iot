@@ -33,8 +33,8 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
     @rule.update(rules_params)
     if @rule.save
-      Rule.add_actions(@rule, params[:actions])
-      Rule.add_actions(@rule, params[:test_cases])
+      @rule.add_actions(@rule, params[:actions])
+      @rule.add_actions(@rule, params[:test_cases])
     else
       render json: @rule.errors, status: :unprocessable_entity
     end
@@ -43,6 +43,6 @@ class RulesController < ApplicationController
   private
 
   def rules_params
-    params.permit(:name, :periodicity, :shared, :actions_id, :test_cases_id)
+    params.permit(:name, :periodicity, :shared, :action_id, :test_case_id)
   end
 end

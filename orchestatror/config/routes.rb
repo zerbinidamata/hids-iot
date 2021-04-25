@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :test_cases
   resources :scripts
   resources :devices
+  resources :device_groups
 end
 
 Rails.application.routes.default_url_options[:host] = 'localhost:3000'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_24_234517) do
+ActiveRecord::Schema.define(version: 2021_04_25_223733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,19 +56,25 @@ ActiveRecord::Schema.define(version: 2021_04_24_234517) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "devices", force: :cascade do |t|
-    t.string "device_ip"
+  create_table "device_groups", force: :cascade do |t|
+    t.string "group_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "devices_scripts", id: false, force: :cascade do |t|
-    t.bigint "device_id", null: false
+  create_table "device_groups_scripts", id: false, force: :cascade do |t|
+    t.bigint "device_group_id", null: false
     t.bigint "script_id", null: false
+    t.index ["device_group_id"], name: "index_device_groups_scripts_on_device_group_id"
+    t.index ["script_id"], name: "index_device_groups_scripts_on_script_id"
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string "device_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["device_id"], name: "index_devices_scripts_on_device_id"
-    t.index ["script_id"], name: "index_devices_scripts_on_script_id"
+    t.bigint "device_group_id"
+    t.index ["device_group_id"], name: "index_devices_on_device_group_id"
   end
 
   create_table "rules", force: :cascade do |t|
