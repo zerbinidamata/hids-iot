@@ -1,4 +1,6 @@
 class Rule < ApplicationRecord
+  has_and_belongs_to_many :device_group
+
   belongs_to :action
   belongs_to :test_case
 

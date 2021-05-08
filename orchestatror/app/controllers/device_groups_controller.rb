@@ -2,7 +2,7 @@ class DeviceGroupsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @devices = DeviceGroup.all.to_json(include: %i[script device])
+    @devices = DeviceGroup.all.to_json(include: %i[script device rule])
     render json: @devices, status: :ok
   end
 
@@ -18,6 +18,7 @@ class DeviceGroupsController < ApplicationController
   def create
     @group = DeviceGroup.create(device_params)
     if @group.save
+      @group.add_rules(@group, params[:rules])
       @group.add_scripts(@group, params[:scripts])
       render json: @group, status: :ok
     else
@@ -40,6 +41,6 @@ class DeviceGroupsController < ApplicationController
   private
 
   def device_params
-    params.permit(:group_name, :scripts)
+    params.permit(:group_name, :scripts, :rules)
   end
 end
