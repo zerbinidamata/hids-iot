@@ -2,10 +2,27 @@ import json
 import requests
 import argparse
 import yaml
+import os
 
 
-# def write_hosts_file():
-#   with open ("./hosts.yaml") as file:
+def generate_provision_file(scripts):
+    cwd = os.getcwd()
+    action_scripts = os.listdir(f"{cwd}/hids_client/scripts/actions")
+    test_scripts = os.listdir(f"{cwd}/hids_client/scripts/test_cases")
+    all_scripts = test_scripts + action_scripts
+    scripts_to_exclude = set(all_scripts).difference(set(scripts))
+    with open("gateway.yaml", "r+") as f:
+        lines = f.readlines()
+        for i, line in enumerate(lines):
+            print(line)
+            if "rsync_opts" in line:
+                for k, script in enumerate(scripts):
+                    lines[
+                        i + k + 1
+                    ] = f"""            - "--exclude={cwd}/hids_client/scripts/{script}"\n"""
+        f.seek(0)
+        for line in lines:
+            f.write(line)
 
 
 def generate_host_data(devices_ip):
@@ -32,3 +49,4 @@ if __name__ == "__main__":
         scripts.append(script["name"])
 
     generate_host_data(devices_ip)
+    generate_provision_file(scripts)
