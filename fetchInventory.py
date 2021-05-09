@@ -1,6 +1,21 @@
 import json
 import requests
 import argparse
+import yaml
+
+
+# def write_hosts_file():
+#   with open ("./hosts.yaml") as file:
+
+
+def generate_host_data(devices_ip):
+    hosts = dict()
+    for i, ip in enumerate(devices_ip):
+        entry = dict(ansible_host=ip, ansible_user="pi", ansible_password="raspberry")
+        hosts[f"gateway{i}"] = entry
+    data = dict(gateways=dict(hosts=hosts))
+    with open("devices.yml", "w") as outfile:
+        yaml.dump(data, outfile, default_flow_style=False)
 
 
 if __name__ == "__main__":
@@ -15,3 +30,5 @@ if __name__ == "__main__":
         devices_ip.append(device["device_ip"])
     for script in data["script"]:
         scripts.append(script["name"])
+
+    generate_host_data(devices_ip)
