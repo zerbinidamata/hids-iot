@@ -7,7 +7,7 @@ class DeviceGroupsController < ApplicationController
   end
 
   def show
-    @group = DeviceGroup.find(params[:id]).to_json(include: :script)
+    @group = DeviceGroup.find(params[:id]).to_json(include: %i[script device])
     if @group
       render json: @group, status: :ok
     else
