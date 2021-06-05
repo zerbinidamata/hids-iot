@@ -7,7 +7,7 @@ class DeviceGroupsController < ApplicationController
   end
 
   def show
-    @group = DeviceGroup.find(params[:id]).to_json(include: %i[script device])
+    @group = DeviceGroup.find(params[:id]).to_json(include: %i[script device rule])
     if @group
       render json: @group, status: :ok
     else
@@ -20,6 +20,7 @@ class DeviceGroupsController < ApplicationController
     if @group.save
       @group.add_rules(@group, params[:rules])
       @group.add_scripts(@group, params[:scripts])
+      DeliveryBoy.deliver_async(params[:rules].to_json, topic: "rules_group_#{@group.id}")
       render json: @group, status: :ok
     else
       render json: @group.errors, status: :unprocessable_entity
