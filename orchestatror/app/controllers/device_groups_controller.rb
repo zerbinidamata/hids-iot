@@ -20,6 +20,7 @@ class DeviceGroupsController < ApplicationController
     if @group.save
       @group.add_rules(@group, params[:rules])
       @group.add_scripts(@group, params[:scripts])
+      ActionCable.server.broadcast("rules_#{@group.id}", @group.rule)
       render json: @group, status: :ok
     else
       render json: @group.errors, status: :unprocessable_entity
