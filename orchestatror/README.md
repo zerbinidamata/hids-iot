@@ -25,3 +25,23 @@ docker
 * Deployment instructions
 
 * ...
+
+
+# Kafka
+## Kafka commands
+
+### Create Topic
+
+```
+kafka-topics.sh --create \
+  --zookeeper zookeeper:2181 \
+  --replication-factor 1 --partitions 13 \
+  --topic devices_rules
+```
+### Produce messages
+
+```
+  kafka-console-producer.sh \
+    --broker-list kafka:9092 \
+    --topic devices_rules
+```
