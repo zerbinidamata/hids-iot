@@ -2,8 +2,9 @@
 
 # Check if sshd is running
 if /etc/init.d/ssh status | grep -q 'not running'; then
-  echo "sshd not running"
+  echo '{"message": "sshd not running", "status": "false", "code": 1}'
+
   exit 1 
 else
-  echo "sshd running"
+  echo '{"message": "sshd running", "status": "true"}'
 fi

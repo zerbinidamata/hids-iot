@@ -7,7 +7,7 @@ import runner
 def create_rule_from_file(file):
     with open(file) as f:
         rule = json.load(f)
-        if rule["periodicity"] == 0:
+        if int(rule["periodicity"]) == 0:
             runner.execute_rule(rule)
         else:
             runner.create_cron_task(rule)
