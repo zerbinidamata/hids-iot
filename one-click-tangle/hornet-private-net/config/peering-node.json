@@ -1,0 +1,12 @@
+  {
+    "peers": [
+      {
+        "alias": "coo",
+        "multiAddress": "/dns/coo/tcp/15600/p2p/12D3KooWKJGzMKoz1FPMsc8oxSEr2N63ssxBeqAQfmfk72jumXKZ"
+      },
+      {
+        "alias": "spammer",
+        "multiAddress": "/dns/spammer/tcp/15600/p2p/12D3KooWFyRm2pAKsath1ULLGurKsVipfZuBBYwuystJw19eQh7B"
+      }
+    ]
+  } 

@@ -1,0 +1,10 @@
+*.seed
+*.root
+*.addr
+*.txt
+logs
+
+db
+.DS_Store
+snapshots
+p2pstore

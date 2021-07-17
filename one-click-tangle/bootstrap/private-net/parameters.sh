@@ -1,0 +1,1 @@
+export TANGLE_COO_BOOTSTRAP_WAIT=10 # We will wait 10 seconds for coordinator bootstrap

@@ -1,0 +1,33 @@
+version: "3"
+
+networks:
+    tangle:
+      name: tangle
+      enable_ipv6: false
+
+services:
+    hornet:
+        hostname: hornet
+        working_dir: /app
+        networks:
+            - tangle
+        image: gohornet/hornet:1.0.2
+        restart: unless-stopped
+        container_name: hornet
+        expose:
+        - 14265
+        - 15600
+        - 8081
+        ports:
+        - "0.0.0.0:14265:14265"
+        - "0.0.0.0:15600:15600"
+        - "0.0.0.0:8081:8081"
+        volumes:
+        - ./config/config.json:/app/config.json:ro
+        - ./config/profiles.json:/app/profiles.json
+        - ./config/peering.json:/app/peering.json
+        - ./db/mainnet:/app/mainnetdb
+        - ./snapshots/mainnet:/app/snapshots/mainnet
+        - ./p2pstore:/app/p2pstore
+        cap_drop:
+            - ALL
