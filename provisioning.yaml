@@ -1,7 +1,8 @@
 ---
 # YAML documents begin with the document separator ---
 
-# The minus in YAML this indicates a list item.  The playbook contains a list 
+# The minus in YAML this indicates a list item.  
+# The playbook contains a list 
 # of plays, with each play being a dictionary
 -
  
@@ -14,14 +15,15 @@
 
   # Tasks: the list of tasks that will be executed within the playbook
   tasks:
-    # This can be changed to a script command if the hids_client is fetched from a remote
+    # This can be changed to a script command 
+    # if the hids_client is fetched from a remote
     - name: Copy HIDS Client 
       #copy 
       synchronize:
         src: ./hids_client/
         dest: /home/hids_client
-        # rsync_opts:
-        #   - "--exclude=.git"
+        rsync_opts:
+          - "--exclude=.git"
 
     - name: Install HIDS dependencies
       command: bash /home/hids_client/install.sh
@@ -34,7 +36,8 @@
 
 
 
-  # Handlers: the list of handlers that are executed as a notify key from a task
+  # Handlers: the list of handlers that are 
+  # executed as a notify key from a task
 
   # Roles: list of roles to be imported into the play
 

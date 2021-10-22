@@ -17,9 +17,11 @@ def generate_provision_file(scripts):
             print(line)
             if "rsync_opts" in line:
                 for k, script in enumerate(scripts):
-                    lines[
-                        i + k + 1
-                    ] = f"""            - "--exclude={cwd}/hids_client/scripts/{script}"\n"""
+                    # Exclude devices 
+                    if scripts != scripts_to_exclude:
+                        lines[
+                            i + k + 1
+                        ] = f"""            - "--exclude={cwd}/hids_client/scripts/{script}"\n"""
         f.seek(0)
         for line in lines:
             f.write(line)

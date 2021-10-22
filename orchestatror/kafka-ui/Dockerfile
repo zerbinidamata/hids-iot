@@ -1,0 +1,8 @@
+FROM provectuslabs/kafka-ui:latest 
+
+ENV KAFKA_CLUSTERS_0_NAME=hids-iot
+ENV KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092,kafka-broker:9092
+ENV KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+
+USER root
+EXPOSE 8080

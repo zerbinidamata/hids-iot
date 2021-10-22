@@ -39,6 +39,12 @@ class DeviceGroupsController < ApplicationController
     end
   end
 
+  def send_rules
+    @group = DeviceGroup.find(params[:id])
+    DeliveryBoy.deliver_async(@group.rule.to_json, topic: "rules_group_#{@group.id}")
+    render json: @group, status: :ok
+  end
+
   private
 
   def device_params

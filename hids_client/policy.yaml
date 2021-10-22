@@ -1,7 +1,31 @@
 scripts: 
-  - check_sshd.sh
-  - stop_sshd.sh
+  check_sshd:
+    script: check_sshd.sh
+    hash: C8928826022AB12BA4DAEFE9587F78434F8D33D7562550AAA802AC3E5977B3D7
+  check_telnet.sh:
+    script: check_telnet.sh
+    hash: 0605E4CAF2D7E4579CDFEA7EAA81595C52EBF0E76A93787393A161AF1E0A0EEF
+  stop_ssh: 
+    script: stop_sshd.sh
+    hash: EF135A28257060FA44993F8B72E2ACDEDC1E1E0D2FD3542123522C688C3C3C73
+  stop_telnet:
+    script: stop_telnet
+    hash: 457A7019CE1CB64AD5933B7425285DDA3C8C9EFE33A3A0DF09F7F7D2A703A235
 
-# Isso é para o caso de querermos filtrar o compartilhamente para redes/canais especificos
-sharing:
-  channels: all
+
+
+
+
+
+
+# scripts: 
+#   - check_sshd.sh
+#   - stop_sshd.sh
+#   - check_telnet.sh
+#   - stop_telnet.sh
+
+
+
+# # Isso é para o caso de querermos filtrar o compartilhamente para redes/canais especificos
+# sharing:
+#   channels: all

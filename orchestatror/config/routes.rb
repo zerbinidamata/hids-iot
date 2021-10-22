@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :scripts
   resources :devices
   resources :device_groups
+
+  post 'send_rules', to: 'device_groups#send_rules'
+
 end
 
 Rails.application.routes.default_url_options[:host] = 'localhost:3000'

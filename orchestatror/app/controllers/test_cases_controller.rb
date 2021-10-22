@@ -8,7 +8,7 @@ class TestCasesController < ApplicationController
 
   def show
     @test_case = TestCase.find(params[:id])
-    render json: { name: @test_case.name, scripts: @test_case.script }, status: :ok if @test_case
+    render json: { name: @test_case.test_case_name, scripts: @test_case.script }, status: :ok if @test_case
   end
 
   def create
@@ -17,13 +17,13 @@ class TestCasesController < ApplicationController
       @test_case.add_scripts(@test_case, params[:scripts])
       render json: @test_case, status: :ok
     else
-      render json: @test_case.errors, status: unprocessable_entity
+      render json: @test_case.errors, status: :unprocessable_entity
     end
   end
 
   private
 
   def test_case_params
-    params.permit(:name)
+    params.permit(:test_case_name, :scripts)
   end
 end

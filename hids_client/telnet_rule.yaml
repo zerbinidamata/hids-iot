@@ -1,0 +1,11 @@
+name: "Check and stop Telnet process"
+# Executes at 4:00 every day
+periodicity: '0 4 * * *'
+
+test_case:
+  scripts: 
+    - check_telnet.sh
+
+action: 
+  scripts:
+    - stop_telnet.sh
