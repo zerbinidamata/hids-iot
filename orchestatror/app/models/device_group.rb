@@ -1,6 +1,8 @@
 class DeviceGroup < ApplicationRecord
   has_and_belongs_to_many :script
-  has_and_belongs_to_many :rule
+  has_and_belongs_to_many :rule, optional: true
+  accepts_nested_attributes_for :rule
+
 
   has_many :device
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_233301) do
+ActiveRecord::Schema.define(version: 2021_10_26_004929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 2021_05_08_233301) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "device_group_id"
     t.index ["device_group_id"], name: "index_devices_on_device_group_id"
+  end
+
+  create_table "external_agents", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "api_key", null: false
+    t.string "api_secret", null: false
+    t.string "policy_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "rules", force: :cascade do |t|

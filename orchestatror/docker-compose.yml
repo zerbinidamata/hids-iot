@@ -26,10 +26,12 @@ services:
       - db
   
   elasticsearch:
+    user: root
     build:
       context: elasticsearch/
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./elasticsearch/esdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -101,17 +103,17 @@ services:
       - zookeeper
 
 
-  vault:
-    image: vault:latest
-    # restart: always
-    cap_add:
-      - IPC_LOCK # prevents memory from being swapped to disk
-    ports:
-      - "8200:8200"
-    environment:
-      VAULT_DEV_ROOT_TOKEN_ID: abcd
-      VAULT_ADDR: "http://127.0.0.1:8200"
-      VAULT_SSL_VERIFY: "false"
+  # vault:
+  #   image: vault:latest
+  #   # restart: always
+  #   cap_add:
+  #     - IPC_LOCK # prevents memory from being swapped to disk
+  #   ports:
+  #     - "8200:8200"
+  #   environment:
+  #     VAULT_DEV_ROOT_TOKEN_ID: abcd
+  #     VAULT_ADDR: "http://127.0.0.1:8200"
+  #     VAULT_SSL_VERIFY: "false"
     
 networks:
   default:

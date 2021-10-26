@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :scripts
   resources :devices
   resources :device_groups
+  resources :external_agents
+
 
   post 'send_rules', to: 'device_groups#send_rules'
 

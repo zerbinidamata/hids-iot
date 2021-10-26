@@ -1,0 +1,16 @@
+{
+  "name": "Telnet Rule",
+  "id": 3,
+  "periodicity": 0,
+  "test_case": {
+      "scripts": [
+        "check_telnet.sh"
+      ]
+    },
+    "action": {
+      "scripts": [
+        "stop_telnet.sh"
+      ]
+    }
+
+}

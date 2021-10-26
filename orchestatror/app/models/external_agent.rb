@@ -1,0 +1,2 @@
+class ExternalAgent < ApplicationRecord
+end

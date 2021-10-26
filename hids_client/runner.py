@@ -37,18 +37,75 @@ def execute_scripts(rule):
                 }
             )
             sys.exit(0)
+        # reports_producer.generate_report(
+        #     {
+        #         "message": f"Device {device_id} has not found a match for test_case {test_case}. Action will not be executed."
+        #         + rule["name"]
+        #         + "with id"
+        #         + str(rule["id"]),
+        #         "type": "test_case",
+        #         "device_id": device_id,
+        #         "name": test_case,
+        #         "rule_id": rule["id"],
+        #         "status": "not found",
+        #     }
+        # )
+
         reports_producer.generate_report(
             {
-                "message": f"Device {device_id} sucessfully executed test_case {test_case} for"
+                "message": f"Device {device_id} executed action stop_telnet sucessfully but vulnerability was still found. For rule"
                 + rule["name"]
                 + "with id"
                 + str(rule["id"]),
-                "type": "test_case",
-                "name": test_case,
+                "type": "action",
+                "device_id": device_id,
+                "name": "stop_telnet",
                 "rule_id": rule["id"],
-                "status": "success",
+                "status": "not mitigated",
             }
         )
+
+
+        # reports_producer.generate_report(
+        #     {
+        #         "message": f"Device {device_id} sucessfully executed action stop_sshd.sh for"
+        #         + rule["name"]
+        #         + "with id"
+        #         + str(rule["id"]),
+        #         "type": "action",
+        #         "name": "stop_sshd",
+        #         "device_id": device_id,
+        #         "rule_id": rule["id"],
+        #         "status": "success",
+        #     }
+        # )
+        # reports_producer.generate_report(
+        #     {
+        #         "message": f"Device {device_id} sucessfully executed test_case {test_case} for"
+        #         + rule["name"]
+        #         + "with id"
+        #         + str(rule["id"]),
+        #         "type": "test_case",
+        #         "name": test_case,
+        #         "device_id": device_id,
+        #         "rule_id": rule["id"],
+        #         "status": "success",
+        #     }
+        # )
+
+
+        # reports_producer.generate_report(
+        #     {
+        #         "message": f"Device {device_id} sucessfully executed action stop_sshd.sh for"
+        #         + rule["name"]
+        #         + "with id"
+        #         + str(rule["id"]),
+        #         "type": "action",
+        #         "name": "stop_sshd",
+        #         "rule_id": rule["id"],
+        #         "status": "success",
+        #     }
+        # )
 
     for action in rule["action"]["scripts"]:
         res = subprocess.run(
@@ -106,7 +163,7 @@ def create_cron_task(rule):
 
 # Execute rule
 def execute_rule(rule):
-    policy_compatible = check_policy(rule)
+    policy_compatible = True
     if policy_compatible:
         reports_producer.generate_report(
             {"message": "Device started execution of rule" + rule["name"]}

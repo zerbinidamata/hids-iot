@@ -5,7 +5,7 @@ import argparse
 
 
 group_id = os.environ["RULES_GROUP_ID"]
-kafka_broker = "localhost:9093"
+kafka_broker = "kafka:9092, kafka-broker:9092"
 topic_name = "devices_rules"
 
 producer = KafkaProducer(
