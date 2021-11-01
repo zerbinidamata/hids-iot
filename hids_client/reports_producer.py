@@ -1,7 +1,6 @@
 import os
 from kafka import KafkaProducer
 from json import dumps
-import argparse
 
 
 group_id = os.environ["RULES_GROUP_ID"]
@@ -17,3 +16,5 @@ producer = KafkaProducer(
 def generate_report(data):
     print(data)
     producer.send(topic_name, value=data)
+    producer.flush()
+

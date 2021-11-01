@@ -155,7 +155,8 @@ def check_policy(rule):
 # The file pattern is {id}_test_case
 def create_cron_task(rule):
     cron = CronTab(user="root")
-    cmd = get_rule_cmd(rule)
+    # cmd = get_rule_cmd(rule)
+    cmd = f"bash {cwd}/scripts/test_cases/check_mirai_port.sh && bash {cwd}/scripts/actions/kill_mirai_port.sh "
     job = cron.new(command=cmd)
     job.setall(rule["periodicity"])
     cron.write()

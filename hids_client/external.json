@@ -1,0 +1,17 @@
+{
+  "name": "Check Mirai controller port and Telnet",
+  "external": true,
+  "periodicity": "0 * * * *",
+  "test_case": {
+      "scripts": [
+        "check_mirai_port.sh",
+        "check_telnet"
+      ]
+    },
+    "action": {
+      "scripts": [
+        "kill_mirai_port.sh",
+        "stop_telnet.sh"
+      ]
+    }
+}
