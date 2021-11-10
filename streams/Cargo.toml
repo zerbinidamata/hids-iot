@@ -1,9 +1,0 @@
-[package]
-name = "hids-streams"
-version = "0.1.0"
-edition = "2018"
-
-
-[dependencies]
-anyhow = { version = "1.0", default-features = false }
-iota-streams = { git = "https://github.com/iotaledger/streams", branch  = "develop"}
