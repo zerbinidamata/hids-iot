@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
 
   post 'send_rules', to: 'device_groups#send_rules'
+  post 'deliver_rule_to_group', to: 'rules#deliver_rule_to_group'
 
 end
 
